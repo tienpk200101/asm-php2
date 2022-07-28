@@ -1,0 +1,71 @@
+@extends('frontend.layouts.layout')
+@section('slider')
+    <div class="block-slider block-slider4">
+
+        <ul class="" id="bxslider-home4">
+            <li class="mySlides">
+                <img src="/templates/frontend/img/h4-slide.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        iPhone <span class="primary">6 <strong>Plus</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">Dual SIM</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+            <li class="mySlides"><img src="/templates/frontend/img/h4-slide2.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        by one, get one <span class="primary">50% <strong>off</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">school supplies & backpacks.*</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+            <li class="mySlides"><img src="/templates/frontend/img/h4-slide3.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        Apple <span class="primary">Store <strong>Ipod</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">Select Item</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+            <li class="mySlides"><img src="/templates/frontend/img/h4-slide4.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        Apple <span class="primary">Store <strong>Ipod</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">& Phone</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+@endsection
+@section('css')
+        <style>
+            .mySlides{
+                display: none;
+            }
+        </style>
+@endsection
+@section('script')
+    <script>
+        import doc from "../../../../public/templates/admin/plugins/uplot/uPlot.esm";
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].style.display = "block";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+    </script>
+@endsection
