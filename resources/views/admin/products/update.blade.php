@@ -12,13 +12,14 @@
             <label>Loại sản phẩm</label>
             <select id="cate_id" name="cate_id" class="form-control">
                 @foreach($categories as $item)
-                    <option value="{{$item->id}}">{{$item->name}}</option>
+                    <option value="{{$item->id}}" {{($product->cate_id == $item->id) ? 'selected' : ''}}>{{$item->name}}</option>
                 @endforeach
             </select>
         </div>
         <div class="form-group">
             <label>Ảnh</label>
             <input type="file" name="image" class="form-control">
+            <img src="{{asset('storage/'.$product->image)}}" width="200px" />
         </div>
         <div class="form-group">
             <label>Giá</label>
