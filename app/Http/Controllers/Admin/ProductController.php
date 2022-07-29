@@ -26,7 +26,7 @@ class ProductController extends Controller
     public function index()
     {
         $product = new Product();
-        $products = $product->laodListWithPage();
+        $products = $product->loadListWithPage();
 //        dd($products[0]);
         $this->v['title'] = 'Sản phẩm';
 
@@ -89,13 +89,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $categories = new Category();
-        $product = new Product();
-        $products = $product->loadOne($id);
-        $this->v['categories'] = $categories->getData();
-        $this->v['product'] = $products;
-        $this->v['title'] = 'Chi tiết sản phẩm';
-        return view('admin.products.update', $this->v);
+
     }
 
     /**
@@ -106,7 +100,13 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = new Category();
+        $product = new Product();
+        $products = $product->loadOne($id);
+        $this->v['categories'] = $categories->getData();
+        $this->v['product'] = $products;
+        $this->v['title'] = 'Chi tiết sản phẩm';
+        return view('admin.products.update', $this->v);
     }
 
     /**
@@ -116,9 +116,26 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $method_route = 'route_BackEnd_Product_Detail';
+        $params = [];
+        $params['cols'] = $request->post();
+        unset($params['cols']['_token']);
+        $product = new Product();
+        $objItem = $product->loadOne($id);
+        $params['cols']['id'] = $id;
+
+        $res = $product->saveUpdate($params);
+        if($res == null) {
+            return redirect()->route($method_route, ['id' => $id]);
+        } elseif($res == 1){
+            Session::flash('success', 'Bản ghi đã được cập nhật');
+            return redirect()->route($method_route, ['id' => $id]);
+        } else {
+            Session::flash('error', 'Lỗi cập nhật bản ghi');
+            return redirect()->route($method_route, ['id' => $id]);
+        }
     }
 
     /**

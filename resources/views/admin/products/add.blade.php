@@ -28,7 +28,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            @error('nacate_idme')
+                            @error('cate_id')
                             <p class="text text-danger">{{$message}}</p>
                             @enderror
                             <div class="form-group">

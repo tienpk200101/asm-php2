@@ -17,26 +17,9 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            @if ( Session::has('success') )
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <strong>{{ Session::get('success') }}</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                </div>
-            @endif
-            @if ( Session::has('error') )
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <strong>{{ Session::get('error') }}</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                </div>
-            @endif
-            @include('admin.alert')
+
             <div class="col-md-12">
+                @include('admin.alert')
                 <div class="card card-info mt-3">
                     <div class="card-header">
                         <h3 class="card-title">{{$title}}</h3>
@@ -48,11 +31,11 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Tên sản phẩm</th>
-                                <th>Loại sản phẩm</th>
+                                <th>Hãng</th>
                                 <th>Ảnh</th>
                                 <th>Giá</th>
-                                <th>Mô tả ngắn</th>
-                                <th>Mô tả</th>
+                                <th>Ngày tạo</th>
+                                <th>Ngày sửa</th>
                                 <th>Trạng thái</th>
                             </tr>
                             </thead>
@@ -67,8 +50,8 @@
                                     <td>{{$item->cate_name}}</td>
                                     <td><img src="{{asset('storage/'.$item->image)}}" width="100px"/></td>
                                     <td>{{$item->price}}</td>
-                                    <td>{{$item->description_short}}</td>
-                                    <td>{{$item->description}}</td>
+                                    <td>{{$item->created_at}}</td>
+                                    <td>{{$item->updated_at}}</td>
                                     <td>{{$item->status}}</td>
                                 </tr>
                             @endforeach

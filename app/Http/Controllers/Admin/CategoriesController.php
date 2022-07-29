@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use Illuminate\Support\Facades\Session;
 
 class CategoriesController extends Controller
 {
@@ -13,7 +16,12 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $category = new Category();
+        $categories = $category->loadListWithPage();
+//        dd($products[0]);
+        $this->v['title'] = 'Danh mục';
+
+        return view('admin.categories.list', compact('categories'), $this->v);
     }
 
     /**
@@ -23,7 +31,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -34,7 +42,26 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $method_route = 'route_BackEnd_Category_List';
+
+        $params = [];
+        $params['cols'] = $request->post();
+//        dd($params['cols']);
+        unset($params['cols']['_token']);
+
+        $modelCategory = new Category();
+
+        $res = $modelCategory->create($params);
+
+        if($res == null) {
+            return redirect()->route($method_route);
+        } elseif ($res > 0) {
+            Session::flash('success', 'Thêm danh mục thành công');
+            return redirect()->route($method_route);
+        } else {
+            Session::flash('error', "Lỗi Thêm Mới Không Thành Công !");
+            return redirect()->route($method_route);
+        }
     }
 
     /**

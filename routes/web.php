@@ -48,8 +48,16 @@ Route::middleware(['auth'])->group(function (){
 //            Post Add Form
             Route::post('/add', 'Admin\ProductController@store')->name('handle_product');
 //            Get Detail Product
-            Route::get('/detail/{id}', 'Admin\ProductController@show');
+            Route::get('/detail/{id}', 'Admin\ProductController@edit')->name('route_BackEnd_Product_Detail');
+//            Post Update Product
+            Route::post('update/{id}', 'Admin\ProductController@update')->name('route_BackEnd_Product_Update');
         });
 
+//        Categories
+        Route::prefix('/categories')->group(function (){
+            Route::get('/', 'Admin\CategoriesController@index')->name('route_BackEnd_Category_List');
+
+            Route::post('/add', 'Admin\CategoriesController@store')->name('route_BackEnd_Category_Post');
+        });
     });
 });
