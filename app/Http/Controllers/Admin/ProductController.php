@@ -8,6 +8,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -27,6 +28,8 @@ class ProductController extends Controller
     {
         $product = new Product();
         $products = $product->loadListWithPage();
+        $pape = $products->currentPage();
+
 //        dd($products[0]);
         $this->v['title'] = 'Sản phẩm';
 
@@ -126,6 +129,13 @@ class ProductController extends Controller
         $objItem = $product->loadOne($id);
         $params['cols']['id'] = $id;
 
+        if($request->hasFile('image')){
+            Storage::delete('storage/'.$objItem->image);
+            $files = $request->file('image')->store('public/profile');
+            $params['cols']['image'] = substr($files, strlen('public/'));
+        }
+
+
         $res = $product->saveUpdate($params);
         if($res == null) {
             return redirect()->route($method_route, ['id' => $id]);
@@ -146,6 +156,24 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $method_route = 'admin_product';
+        $product = Product::find($id);
+
+        if(isset($product)) {
+            $res = $product->delete();
+            if($res == 1){
+                Session::flash('success', 'Xóa bản ghi thành công');
+                return redirect()->route($method_route);
+            } else {
+                Session::flash('error', 'Xóa bản ghi thất bại');
+                return redirect()->route($method_route);
+            }
+        } else {
+            Session::flash('error', 'Bản ghi không tồn tại');
+            return redirect()->route($method_route);
+        }
+
+
+
     }
 }

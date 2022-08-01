@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -35,12 +36,17 @@ class LoginController extends Controller
             'password' => 'Mật khẩu'
         ]);
 
+        $email = $request->input('email');
+        $password = $request->input('password');
+
 
         if (Auth::attempt([
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-            'level' => 1]))
+            'email' => $email,
+            'password' => $password,
+            'role_id' => 1]))
         {
+            $user = User::where('email', '=', $email)->first();
+            Auth::login($user);
             return redirect('/admin/dashboard');
         } else {
             Session::flash('error', 'Email hoặc mật khẩu không đúng.');

@@ -2,18 +2,22 @@
 @section('title')
     {{$title}}
 @endsection
-{{--@section('css')--}}
-{{--    <style>--}}
+@section('css')
+    /*<style>*/
 
-{{--        .form {--}}
-{{--            display: none;--}}
-{{--            position: absolute;--}}
-{{--            top: 50px;--}}
-{{--            left: 400px;--}}
-{{--            right: 0;--}}
-{{--        }--}}
-{{--    </style>--}}
-{{--@endsection--}}
+/*        .form {*/
+/*            display: none;*/
+/*            position: absolute;*/
+/*            top: 50px;*/
+/*            left: 400px;*/
+/*            right: 0;*/
+/*        }*/
+/*    </style>*/
+    <style>
+        .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+        .toggle.ios .toggle-handle { border-radius: 20px; }
+    </style>
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -52,7 +56,10 @@
                                     <td>{{$item->price}}</td>
                                     <td>{{$item->created_at}}</td>
                                     <td>{{$item->updated_at}}</td>
-                                    <td>{{$item->status}}</td>
+                                    <td class="text-center">
+                                        <a href="{{route('route_BackEnd_Product_Destroy', ['id' => $item->id])}}" id="deleteProduct" class="text text-danger">Xóa</a>
+                                    </td>
+{{--                                    <td><input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled"></td>--}}
                                 </tr>
                             @endforeach
                             </tbody>
@@ -72,18 +79,14 @@
 
 @endsection
 
-{{--@section('script')--}}
-{{--    <script>--}}
-{{--        $(document).ready(function(){--}}
-{{--            $('#add-product').click(function (){--}}
-{{--                $('.form').fadeIn("slow");--}}
-{{--                $('.table-list').fadeTo(300, 0.2);--}}
-{{--            })--}}
+@section('script')
+    <script>
+        $('document').ready(function (){
+            $('#clickMe').on('click', function (){
+                if(confirm('Bạn có chắc chắn muốn xóa sản phẩm này chứ ?') == false) {
 
-{{--            $('#cancel').click(function (){--}}
-{{--                $('.form').fadeOut("slow");--}}
-{{--                $('.table-list').fadeTo(300, 1);--}}
-{{--            })--}}
-{{--        })--}}
-{{--    </script>--}}
-{{--@endsection--}}
+                }
+            })
+        })
+    </script>
+@endsection

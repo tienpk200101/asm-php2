@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
          DB::table('roles')->insert($this->roleSeeder());
-//         DB::table('users')->insert($this->userSeeder());
+         DB::table('users')->insert($this->userSeeder());
          DB::table('categories')->insert($this->cateSeeder());
          DB::table('banners')->insert($this->bannerSeeder());
          DB::table('products')->insert($this->productSeeder());

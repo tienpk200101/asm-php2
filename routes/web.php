@@ -19,10 +19,6 @@ Route::get('/', function (){
     return view('frontend.layouts.main');
 });
 
-Route::get('uploadFile', function (){
-    return view('uploadFile');
-});
-
 Route::post('postFile', [MyController::class, 'uploadFile'])->name('postFile');
 
 Route::get('/admin/login', 'Admin\LoginController@getLoginAdmin')->name('login');
@@ -41,23 +37,45 @@ Route::middleware(['auth'])->group(function (){
 
 //      Product
         Route::prefix('/product')->group(function(){
-//          List product
-            Route::get('/', 'Admin\ProductController@index')->name('admin_product');
-//            Get Add Form
-            Route::get('/add', 'Admin\ProductController@create')->name('add_product');
-//            Post Add Form
-            Route::post('/add', 'Admin\ProductController@store')->name('handle_product');
-//            Get Detail Product
-            Route::get('/detail/{id}', 'Admin\ProductController@edit')->name('route_BackEnd_Product_Detail');
-//            Post Update Product
-            Route::post('update/{id}', 'Admin\ProductController@update')->name('route_BackEnd_Product_Update');
+//            Controller Product
+            Route::controller('Admin\ProductController')->group(function (){
+                Route::get('/', 'index')->name('admin_product'); // get list product
+
+                Route::get('/add', 'create')->name('add_product'); // get add form product
+
+                Route::post('/add', 'store')->name('handle_product'); // add product
+
+                Route::get('/detail/{id}', 'edit')->name('route_BackEnd_Product_Detail'); // get detail product
+
+                Route::post('/update/{id}', 'update')->name('route_BackEnd_Product_Update'); // post update product
+
+                Route::get('/delete/{id}', 'destroy')->name('route_BackEnd_Product_Destroy'); // delete product
+
+            });
+
+        });
+//      Category
+        Route::prefix('/categories')->group(function (){
+            Route::controller('Admin\CategoriesController')->group(function(){
+                Route::get('/', 'index')->name('route_BackEnd_Category_List');// List categories
+
+                Route::post('/add', 'store')->name('route_BackEnd_Category_Post');// Add categories
+
+                Route::get('/detail/{id}', 'edit')->name('route_BackEnd_Category_Detail');// Categories detail
+
+                Route::post('/update/{id}', 'update')->name('route_BackEnd_Category_Update');// Categories Update
+
+                Route::get('/delete/{id}', 'destroy')->name('route_BackEnd_Category_Destroy');// Categories Update
+            });
         });
 
-//        Categories
-        Route::prefix('/categories')->group(function (){
-            Route::get('/', 'Admin\CategoriesController@index')->name('route_BackEnd_Category_List');
+//        User
+        Route::prefix('/users')->group(function (){
+            Route::controller('Admin\UsersController')->group(function (){
+                Route::get('/', 'index')->name('Route_BackEnd_User_List'); // List User
 
-            Route::post('/add', 'Admin\CategoriesController@store')->name('route_BackEnd_Category_Post');
+                Route::get('/detail/{id}', 'show')->name('Route_BackEnd_User_Detail'); // Detail User
+            });
         });
     });
 });

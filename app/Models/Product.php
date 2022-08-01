@@ -42,7 +42,6 @@ class Product extends Model
     }
 
     public function loadOne($id, $param = null){
-//        dd($this->fillable);
         $product = DB::table($this->table)
             ->where('id', '=', $id)
             ->first();
@@ -70,5 +69,6 @@ class Product extends Model
             ->update($dataUpdate);
         return $res;
     }
+
 
 }

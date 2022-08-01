@@ -4,8 +4,15 @@
 @endsection
 @section('css')
     <style>
+        #content {
+            position: relative;
+        }
         #add-cate {
             display: none;
+        }
+
+        #update-cate{
+            /*display: none;*/
         }
     </style>
 @endsection
@@ -21,17 +28,7 @@
                     </div>
                     <div class="table-list mt-4">
                         <button class="btn btn-outline-success" id="add-category" >Thêm danh mục</button>
-                        <form id="add-cate" class="mt-4" method="post" action="{{route('route_BackEnd_Category_Post')}}" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label>Tên danh mục</label>
-                                <input type="text" name="name" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <div class="btn btn-danger" id="close">Hủy</div>
-                                <button class="btn btn-primary">Thêm</button>
-                            </div>
-                            @csrf
-                        </form>
+                        @include('admin.categories.add')
                         <table class="container-fluid table table-bordered my-4">
                             <thead>
                             <tr>
@@ -49,19 +46,20 @@
                             @foreach($categories as $item)
                                 <tr>
                                     <td>{{$i++}}</td>
-                                    <td>{{$item->name}}</td>
-{{--                                    <td><a href="{{url('/admin/product/detail/'.$item->id)}}">{{$item->name}}</a></td>--}}
+{{--                                    <td>{{$item->name}}</td>--}}
+                                    <td><a href="{{url('/admin/categories/detail/'.$item->id)}}">{{$item->name}}</a></td>
                                     <td>{{$item->created_at}}</td>
                                     <td>{{$item->updated_at}}</td>
-                                    <td>{{$item->status}}</td>
+                                    <td class="text-center"><a class="text-danger" href="{{route('route_BackEnd_Category_Destroy', ['id' => $item->id])}}">Xóa</a></td>
+{{--                                    <td>{{$item->status}}</td>--}}
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
-                    {{--                    <div class="form col-lg-6 col-md-6 col-sm-6">--}}
-                    {{--                        @include('admin.products.add')--}}
-                    {{--                    </div>--}}
+                    <div class="form col-lg-6 col-md-6 col-sm-6">
+{{--                        @include('admin.categories.edit')--}}
+                    </div>
                     <div class="d-flex justify-content-center">
                         {{ $categories->links() }}
                     </div>

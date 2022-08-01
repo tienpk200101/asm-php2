@@ -61,6 +61,42 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item menu-open">
+                    <a href="{{url('/admin/categories')}}" class="nav-link">
+                        <i class="nav-icon fas fa-product-alt"></i>
+                        <p>
+                            Banner
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item menu-open">
+                    <a href="{{url('/admin/users')}}" class="nav-link">
+                        <i class="nav-icon fas fa-product-alt"></i>
+                        <p>
+                            Khách hàng
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item menu-open">
+                    <a href="{{url('/admin/categories')}}" class="nav-link">
+                        <i class="nav-icon fas fa-product-alt"></i>
+                        <p>
+                            Đơn hàng
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item menu-open">
+                    <a href="{{url('/admin/categories')}}" class="nav-link">
+                        <i class="nav-icon fas fa-product-alt"></i>
+                        <p>
+                            Nhân viên
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
 

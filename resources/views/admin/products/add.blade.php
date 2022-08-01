@@ -15,7 +15,7 @@
                         <form method="post" action="{{route('handle_product')}}" enctype="multipart/form-data" class="col-8">
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
-                                <input type="text" name="name" class="form-control">
+                                <input type="text" name="name" class="form-control" value="{{old('name')}}">
                             </div>
                             @error('name')
                                 <p class="text text-danger">{{$message}}</p>
@@ -40,14 +40,14 @@
                             @enderror
                             <div class="form-group">
                                 <label>Giá</label>
-                                <input type="text" name="price" class="form-control">
+                                <input type="text" name="price" class="form-control" value="{{old('price')}}">
                             </div>
                             @error('price')
                             <p class="text text-danger">{{$message}}</p>
                             @enderror
                             <div class="form-group">
                                 <label>Mô tả ngắn</label>
-                                <input type="text" name="description_short" class="form-control">
+                                <input type="text" name="description_short" class="form-control" value="{{old('description_short')}}">
                             </div>
                             @error('description_short')
                             <p class="text text-danger">{{$message}}</p>
