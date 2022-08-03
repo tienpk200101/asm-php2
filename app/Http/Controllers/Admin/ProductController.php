@@ -67,9 +67,8 @@ class ProductController extends Controller
 
 
         $modelProduct = new Product();
-        if($request->hasFile('image')){
-            $files = $request->file('image')->store('public/profile');
-            $params['cols']['image'] = substr($files, strlen('public/'));
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $params['cols']['image'] = $this->uploadFile($request->file('image'));
         }
         $res = $modelProduct->create($params);
 
@@ -129,10 +128,8 @@ class ProductController extends Controller
         $objItem = $product->loadOne($id);
         $params['cols']['id'] = $id;
 
-        if($request->hasFile('image')){
-            Storage::delete('storage/'.$objItem->image);
-            $files = $request->file('image')->store('public/profile');
-            $params['cols']['image'] = substr($files, strlen('public/'));
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $params['cols']['image'] = $this->uploadFile($request->file('image'));
         }
 
 
@@ -172,8 +169,10 @@ class ProductController extends Controller
             Session::flash('error', 'Bản ghi không tồn tại');
             return redirect()->route($method_route);
         }
+    }
 
-
-
+    public function uploadFile($file){
+        $fileName = time().'_'.$file->getClientOriginalName();
+        return $file->storeAs('product', $fileName, 'public');
     }
 }

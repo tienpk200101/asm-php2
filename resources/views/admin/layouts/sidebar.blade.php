@@ -45,7 +45,7 @@
                 </li>
                 <li class="nav-item menu-open">
                     <a href="{{url('/admin/product')}}" class="nav-link">
-                        <i class="nav-icon fas fa-product-alt"></i>
+                        <i class="nav-icon fas fa-bars"></i>
                         <p>
                             Sản phẩm
                             <i class="right fas fa-angle-left"></i>
@@ -54,7 +54,7 @@
                 </li>
                 <li class="nav-item menu-open">
                     <a href="{{url('/admin/categories')}}" class="nav-link">
-                        <i class="nav-icon fas fa-product-alt"></i>
+                        <i class="nav-icon fas fa-bars"></i>
                         <p>
                             Danh mục
                             <i class="right fas fa-angle-left"></i>
@@ -62,8 +62,8 @@
                     </a>
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="{{url('/admin/categories')}}" class="nav-link">
-                        <i class="nav-icon fas fa-product-alt"></i>
+                    <a href="{{url('/admin/banners')}}" class="nav-link">
+                        <i class="nav-icon fas fa-image"></i>
                         <p>
                             Banner
                             <i class="right fas fa-angle-left"></i>
@@ -72,7 +72,7 @@
                 </li>
                 <li class="nav-item menu-open">
                     <a href="{{url('/admin/users')}}" class="nav-link">
-                        <i class="nav-icon fas fa-product-alt"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
                             Khách hàng
                             <i class="right fas fa-angle-left"></i>
@@ -81,7 +81,7 @@
                 </li>
                 <li class="nav-item menu-open">
                     <a href="{{url('/admin/categories')}}" class="nav-link">
-                        <i class="nav-icon fas fa-product-alt"></i>
+                        <i class="nav-icon fas fa-cart-plus"></i>
                         <p>
                             Đơn hàng
                             <i class="right fas fa-angle-left"></i>
@@ -90,7 +90,7 @@
                 </li>
                 <li class="nav-item menu-open">
                     <a href="{{url('/admin/categories')}}" class="nav-link">
-                        <i class="nav-icon fas fa-product-alt"></i>
+                        <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             Nhân viên
                             <i class="right fas fa-angle-left"></i>

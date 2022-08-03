@@ -77,5 +77,16 @@ Route::middleware(['auth'])->group(function (){
                 Route::get('/detail/{id}', 'show')->name('Route_BackEnd_User_Detail'); // Detail User
             });
         });
+
+//        Banner
+        Route::prefix('/banners')->group(function (){
+            Route::controller('Admin\BannerController')->group(function(){
+                Route::get('/', 'index')->name('Route_BackEnd_Banner_List'); // get list banner
+                Route::get('/add', 'create')->name('Route_BackEnd_Banner_Add'); // get list banner
+                Route::post('/add', 'store')->name('Route_BackEnd_Banner_Post'); // Post Banner
+                Route::get('/detail/{id}', 'edit')->name('Route_BackEnd_Banner_Detail'); // Get Form Edit Banner
+                Route::post('/update/{id}', 'update')->name('Route_BackEnd_Banner_Detail'); // Update Banner
+            });
+        });
     });
 });
