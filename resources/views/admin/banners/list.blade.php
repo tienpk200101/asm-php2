@@ -45,7 +45,7 @@
                                     <td>{{$item->created_at}}</td>
                                     <td>{{$item->updated_at}}</td>
                                     <td class="text-center">
-                                        <a href="" id="deleteProduct" class="text text-danger">Xóa</a>
+                                        <a href="{{route('Route_BackEnd_Banner_Destroy', ['id' => $item->id])}}" id="deleteProduct" class="text text-danger">Xóa</a>
                                     </td>
                                     {{--                                    <td><input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled"></td>--}}
                                 </tr>
