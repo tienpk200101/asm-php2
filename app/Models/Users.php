@@ -11,15 +11,17 @@ class Users extends Model
 {
     use HasFactory;
     protected $table = 'users';
-    protected $fillable = ['id', 'name', 'email', 'avatar', 'created_at', 'updated_at', 'status'];
+    protected $fillable = ['id', 'name', 'email', 'avatar', 'role_id', 'created_at', 'updated_at', 'status'];
 
-    public function loadListWithPage(){
+    public function loadListWithPage($level){
         $users = DB::table($this->table)
-            ->where('level', 2)
+            ->where('level', $level)
             ->select($this->fillable)
             ->paginate(5);
         return $users;
     }
+
+
 
     public function loadOne($id){
         $user = DB::table($this->table)
@@ -27,5 +29,18 @@ class Users extends Model
             ->first();
 
         return $user;
+    }
+
+    public function saveStaff($params) {
+        $data = array_merge($params['cols'], [
+            'name' => $params['cols']['name'],
+            'email' => $params['cols']['email'],
+            'avatar' => $params['cols']['avatar'],
+            'password' => $params['cols']['password'],
+            'role_id' => 1,
+            'level' => 1,
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+        $res = DB::table($this->table)->insertGetId($data);
     }
 }
