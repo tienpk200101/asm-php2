@@ -12,7 +12,7 @@
                     </div>
                     {{--                    @include('admin.alert')--}}
                     <div class="table-list mt-4 d-flex justify-content-center">
-                        <form method="post" action="{{route('Route_BackEnd_Banner_Post')}}" enctype="multipart/form-data" class="col-8">
+                        <form method="post" action="{{route('Route_BackEnd_Banner_Update', ['id' => $banner->id])}}" enctype="multipart/form-data" class="col-8">
                             <div class="form-group">
                                 <label>Tên banner</label>
                                 <input type="text" name="name" class="form-control" value="{{$banner->name}}">
@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <a href="{{route('Route_BackEnd_Banner_List')}}" class="btn btn-primary">Quay lại</a>
                                 <button type="reset" class="btn btn-warning">Reset</button>
-                                <button type="submit" class="btn btn-success">Thêm sản phẩm</button>
+                                <button type="submit" class="btn btn-success">Cập nhật</button>
                             </div>
                             @csrf
                         </form>

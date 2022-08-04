@@ -25,7 +25,7 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
             <form action="/admin/login" method="post">
-{{--                @include('admin.alert')--}}
+                @include('admin.alert')
 {{--                @if(Session('msg'))--}}
 {{--                <div class="alert alert-danger">{{Session('msg')}}</div>--}}
 {{--                @endif--}}
