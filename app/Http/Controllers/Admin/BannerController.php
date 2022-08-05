@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
@@ -66,7 +67,50 @@ class BannerController extends Controller
     }
 
     public function update(Request $request, $id){
+        $method_route = 'Route_BackEnd_Banner_Detail';
 
+        $params = [];
+        $params['cols'] = $request->post();
+        unset($params['cols']['_token']);
+        $params['cols']['id'] = $id;
+        $banner = new Banner();
+
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $params['cols']['image'] = $this->uploadFile($request->file('image'));
+        }
+
+        $res = $banner->saveUpdate($params);
+
+        if($res == null) {
+            return redirect()->route($method_route, ['id' => $id]);
+        } elseif ($res == 1) {
+            Session::flash('success', 'Cập nhật thành công');
+            return redirect()->route($method_route, ['id' => $id]);
+        } else {
+            Session::flash('error', 'Cập nhật không thành công');
+            return redirect()->route($method_route, ['id' => $id]);
+        }
+    }
+
+    public function destroy($id) {
+        $method_route = 'Route_BackEnd_Banner_List';
+
+        $banner = Banner::find($id);
+
+        if(isset($banner)){
+            $res = $banner->delete();
+
+            if($res == 1){
+                Session::flash('success', 'Xóa banner thành công');
+                return redirect()->route($method_route);
+            } else{
+                Session::flash('error', 'Xóa banner không thành công');
+                return redirect()->route($method_route);
+            }
+        } else {
+            Session::flash('error', 'Bản không không tồn tại');
+            return redirect()->route($method_route);
+        }
     }
 
     public function uploadFile($file){
