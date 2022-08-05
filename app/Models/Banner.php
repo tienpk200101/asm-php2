@@ -39,4 +39,27 @@ class Banner extends Model
         $res = DB::table($this->table)->insertGetId($data);
         return $res;
     }
+
+    public function saveUpdate($params) {
+        if(empty($params['cols']['id'])) {
+            Session::flash('error', 'Không xác nhận được bản ghi');
+            return null;
+        }
+
+        $dataUpdate = [];
+        foreach ($params['cols'] as $key => $val) {
+            if($key == 'id') continue;
+
+//            if(in_array($key, $this->fillable)) {
+                $dataUpdate[$key] = (strlen($val == 0)) ? null : $val;
+//            }
+        }
+        $dataUpdate['updated_at'] = date('Y-m-d H:i:s');
+
+        $res = DB::table($this->table)
+            ->where('id', $params['cols']['id'])
+            ->update($dataUpdate);
+        return $res;
+    }
+
 }

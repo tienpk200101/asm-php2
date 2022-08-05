@@ -132,8 +132,8 @@ class ProductController extends Controller
             $params['cols']['image'] = $this->uploadFile($request->file('image'));
         }
 
-
         $res = $product->saveUpdate($params);
+
         if($res == null) {
             return redirect()->route($method_route, ['id' => $id]);
         } elseif($res == 1){
@@ -158,6 +158,7 @@ class ProductController extends Controller
 
         if(isset($product)) {
             $res = $product->delete();
+            dd($res);
             if($res == 1){
                 Session::flash('success', 'Xóa bản ghi thành công');
                 return redirect()->route($method_route);

@@ -3,10 +3,6 @@
     {{$title}}
 @endsection
 @section('css')
-    <style>
-        .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
-        .toggle.ios .toggle-handle { border-radius: 20px; }
-    </style>
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -19,16 +15,16 @@
                         <h3 class="card-title">{{$title}}</h3>
                     </div>
                     <div class="table-list mt-4">
-                        <a class="btn btn-outline-success" id="add-product" href="{{route('Route_BackEnd_Banner_Add')}}">Thêm banner</a>
+                        <a href="{{route('Route_BackEnd_Staff_Add')}}" class="btn btn-outline-success">Thêm nhân viên</a>
                         <table class="container-fluid table table-bordered my-4">
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Tên banner</th>
+                                <th>Họ tên</th>
+                                <th>Email</th>
                                 <th>Ảnh</th>
-                                <th>URL</th>
                                 <th>Ngày tạo</th>
-                                <th>Ngày sửa</th>
+                                <th>Ngày Sửa</th>
                                 <th>Trạng thái</th>
                             </tr>
                             </thead>
@@ -36,25 +32,22 @@
                             @php
                                 static $i = 1;
                             @endphp
-                            @foreach($banners as $item)
+                            @foreach($staffs as $item)
                                 <tr>
                                     <td>{{$i++}}</td>
-                                    <td><a href="{{url('/admin/banners/detail/'.$item->id)}}">{{$item->name}}</a></td>
-                                    <td><img src="{{asset('storage/'.$item->image)}}" width="100px"/></td>
-                                    <td>{{$item->url}}</td>
+                                    <td><a href="{{url('/admin/users/detail/'.$item->id)}}">{{$item->name}}</a></td>
+                                    <td>{{$item->email}}</td>
+                                    <td><img src="{{asset('storage/'.$item->avatar)}}" width="100px" style="border-radius: 50%"/></td>
                                     <td>{{$item->created_at}}</td>
                                     <td>{{$item->updated_at}}</td>
-                                    <td class="text-center">
-                                        <a href="{{route('Route_BackEnd_Banner_Destroy', ['id' => $item->id])}}" id="deleteProduct" class="text text-danger">Xóa</a>
-                                    </td>
-                                    {{--                                    <td><input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled"></td>--}}
+                                    <td><input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled"></td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="d-flex justify-content-center">
-                        {{ $banners->links() }}
+                        {{ $staffs->links() }}
                     </div>
 
                 </div>
@@ -65,4 +58,5 @@
 @endsection
 
 @section('script')
+
 @endsection

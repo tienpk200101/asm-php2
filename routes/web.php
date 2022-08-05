@@ -85,7 +85,17 @@ Route::middleware(['auth'])->group(function (){
                 Route::get('/add', 'create')->name('Route_BackEnd_Banner_Add'); // get list banner
                 Route::post('/add', 'store')->name('Route_BackEnd_Banner_Post'); // Post Banner
                 Route::get('/detail/{id}', 'edit')->name('Route_BackEnd_Banner_Detail'); // Get Form Edit Banner
-                Route::post('/update/{id}', 'update')->name('Route_BackEnd_Banner_Detail'); // Update Banner
+                Route::post('/update/{id}', 'update')->name('Route_BackEnd_Banner_Update'); // Update Banner
+                Route::get('/delete/{id}', 'destroy')->name('Route_BackEnd_Banner_Destroy'); // delete Banner
+            });
+        });
+
+        // Staff
+        Route::prefix('staffs')->group(function(){
+            Route::controller('Admin\StaffController')->group(function(){
+                Route::get('/', 'index')->name('Route_BackEnd_Staff_List'); // get list staff
+                Route::get('add', 'create')->name('Route_BackEnd_Staff_Add'); //Get form add staff
+                Route::post('add', 'store')->name('Route_BackEnd_Staff_Post'); //Get form add staff
             });
         });
     });

@@ -10,7 +10,7 @@
 
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="/templates/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
+                <img src="{{asset('storage/'.$objUser->avatar)}}" class="img-circle elevation-2"
                      alt="User Image">
             </div>
             <div class="info">
@@ -89,7 +89,7 @@
                     </a>
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="{{url('/admin/categories')}}" class="nav-link">
+                    <a href="{{url('/admin/staffs')}}" class="nav-link">
                         <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             Nhân viên
