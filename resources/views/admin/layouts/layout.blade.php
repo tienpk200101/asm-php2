@@ -69,6 +69,11 @@
                         <i class="fas fa-th-large"></i>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="control-home" data-slide="true" href="{{route('Route_FrontEnd_Index')}}" role="button">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-user"></i>

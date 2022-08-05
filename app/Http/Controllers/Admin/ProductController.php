@@ -27,7 +27,7 @@ class ProductController extends Controller
     public function index()
     {
         $product = new Product();
-        $products = $product->loadListWithPage();
+        $products = $product->loadListWithPage(12);
         $pape = $products->currentPage();
 
 //        dd($products[0]);
@@ -158,7 +158,7 @@ class ProductController extends Controller
 
         if(isset($product)) {
             $res = $product->delete();
-            dd($res);
+
             if($res == 1){
                 Session::flash('success', 'Xóa bản ghi thành công');
                 return redirect()->route($method_route);

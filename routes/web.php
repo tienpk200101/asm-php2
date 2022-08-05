@@ -15,11 +15,9 @@ use App\Http\Controllers\MyController;
 |
 */
 
-Route::get('/', function (){
-    return view('frontend.layouts.main');
-});
 
-Route::post('postFile', [MyController::class, 'uploadFile'])->name('postFile');
+
+//Route::post('postFile', [MyController::class, 'uploadFile'])->name('postFile');
 
 Route::get('/admin/login', 'Admin\LoginController@getLoginAdmin')->name('login');
 Route::post('/admin/login', 'Admin\LoginController@postLoginAdmin');
@@ -28,6 +26,16 @@ Route::get('admin/register', function (){
     return view('admin.auth.register');
 });
 
+//FRONTEND
+Route::controller('FrontEnd\FrontEndController')->group(function(){
+    Route::get('/', 'index')->name('Route_FrontEnd_Index');
+    Route::get('/shoppage', 'shopPage')->name('Route_FrontEnd_ShopPage');
+    Route::get('/product/{id}', 'detail')->name('Route_FrontEnd_Detail');
+});
+
+
+
+// BACKEND
 Route::middleware(['auth'])->group(function (){
     Route::prefix('/admin')->group(function (){
 
