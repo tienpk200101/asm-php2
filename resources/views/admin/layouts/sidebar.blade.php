@@ -44,6 +44,15 @@
                     </a>
                 </li>
                 <li class="nav-item menu-open">
+                    <a href="{{url('/admin/categories')}}" class="nav-link">
+                        <i class="nav-icon fas fa-cart-plus"></i>
+                        <p>
+                            Đơn hàng
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item menu-open">
                     <a href="{{url('/admin/product')}}" class="nav-link">
                         <i class="nav-icon fas fa-bars"></i>
                         <p>
@@ -71,31 +80,27 @@
                     </a>
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="{{url('/admin/users')}}" class="nav-link">
+                    <a class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Khách hàng
+                            Người dùng
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                </li>
-                <li class="nav-item menu-open">
-                    <a href="{{url('/admin/categories')}}" class="nav-link">
-                        <i class="nav-icon fas fa-cart-plus"></i>
-                        <p>
-                            Đơn hàng
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item menu-open">
-                    <a href="{{url('/admin/staffs')}}" class="nav-link">
-                        <i class="nav-icon fas fa-clipboard-list"></i>
-                        <p>
-                            Nhân viên
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{url('/admin/users')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Khách hàng</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('/admin/staffs')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nhân viên</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>
@@ -103,3 +108,4 @@
     </div>
 
 </aside>
+

@@ -1,12 +1,12 @@
 @extends('frontend.layouts.layout')
 @section('content')
     @foreach($products as $product)
-    <div class="col-md-3 col-sm-6">
-        <div class="single-shop-product">
+    <div class="col-md-3 col-sm-6 gap-4">
+        <div class="single-shop-product" style="max-height: 300px">
             <div class="product-upper text-center">
                 <img src="{{asset('storage/'.$product->image)}}" alt="" style="max-height: 262.5px;">
             </div>
-            <h2 class="text-center"><a href="{{route('Route_FrontEnd_Detail', ['id' => $product->id])}}">{{$product->name}}</a></h2>
+            <h4 class="text-center"><a href="{{route('Route_FrontEnd_Detail', ['id' => $product->id])}}">{{$product->name}}</a></h4>
             <div class="product-carousel-price text-center">
                 <ins>{{$product->price}}đ</ins>
 {{--                <del>$999.00</del>--}}

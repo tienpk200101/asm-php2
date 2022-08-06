@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <a href="{{route('Route_BackEnd_Banner_List')}}" class="btn btn-primary">Quay lại</a>
                                 <button type="reset" class="btn btn-warning">Reset</button>
-                                <button type="submit" class="btn btn-success">Thêm sản phẩm</button>
+                                <button type="submit" class="btn btn-success">Thêm banner</button>
                             </div>
                             @csrf
                         </form>

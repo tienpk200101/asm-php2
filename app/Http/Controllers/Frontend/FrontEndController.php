@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,8 @@ class FrontEndController extends Controller
     }
 
     public function index(){
+        $banners = Banner::all();
+        $this->v['banners'] = $banners;
         $this->v['title'] = 'Fintech';
         return view('frontend.layouts.main', $this->v);
     }
