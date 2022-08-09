@@ -25,6 +25,16 @@ class Product extends Model
         return $products;
     }
 
+    // public function loadListWithSearch($search){
+        
+    //     if($search == '') {
+    //         $products = DB::table($this->table)
+    //             ->leftJoin('categories', 'products.cate_id', '=', 'categories.id')
+    //             ->where('name', 'LIKE', '%'.$search.'%');
+    //             ->select($this->fillable)
+    //     }
+    // }
+
     public function create($params){
         $data = array_merge($params['cols'],[
             'name' => $params['cols']['name'],

@@ -1,4 +1,7 @@
 @extends('frontend.layouts.layout')
+@section('content')
+
+@endsection
 @section('slider')
     <div class="block-slider block-slider4">
 

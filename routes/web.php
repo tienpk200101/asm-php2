@@ -15,7 +15,9 @@ use App\Http\Controllers\MyController;
 |
 */
 
-
+Route::get('thu', function(){
+    return view('index');
+});
 
 //Route::post('postFile', [MyController::class, 'uploadFile'])->name('postFile');
 
@@ -37,14 +39,16 @@ Route::controller('FrontEnd\FrontEndController')->group(function(){
 
 // BACKEND
 Route::middleware(['auth'])->group(function (){
-    Route::prefix('/admin')->group(function (){
+    Route::prefix('admin')->group(function (){
 
-        Route::get('/dashboard', function () {
+        Route::get('dashboard', function () {
             return view('admin.layouts.main', ['title'=>'Dashboard']);
         });
 
+        Route::get('info', 'Admin\UsersController@info')->name("Route_BackEnd_AdminInfo");
+
 //      Product
-        Route::prefix('/product')->group(function(){
+        Route::prefix('product')->group(function(){
 //            Controller Product
             Route::controller('Admin\ProductController')->group(function (){
                 Route::get('/', 'index')->name('admin_product'); // get list product

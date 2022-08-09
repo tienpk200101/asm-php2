@@ -27,7 +27,7 @@ class ProductController extends Controller
     public function index()
     {
         $product = new Product();
-        $products = $product->loadListWithPage(12);
+        $products = $product->loadListWithPage(8);
         $pape = $products->currentPage();
 
 //        dd($products[0]);

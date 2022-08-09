@@ -26,9 +26,6 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="index3.html" class="nav-link">Home</a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">
@@ -70,7 +67,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="control-home" data-slide="true" href="{{route('Route_FrontEnd_Index')}}" role="button">
+                    <a class="nav-link" data-widget="control-home" data-slide="true" target="_blank" href="{{route('Route_FrontEnd_Index')}}" role="button">
                         <i class="fas fa-home"></i>
                     </a>
                 </li>
@@ -80,7 +77,7 @@
                         <span class="badge badge-danger navbar-badge"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="#" class="dropdown-item d-flex justify-content-center">
+                        <a href="{{route('Route_BackEnd_AdminInfo')}}" class="dropdown-item d-flex justify-content-center">
                             Thông tin cá nhân
                         </a>
                         <div class="dropdown-divider"></div>
@@ -110,7 +107,7 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">@yield('title')</li>
+                                <li class="breadcrumb-item active">{{$title}}</li>
                             </ol>
                         </div>
                     </div>

@@ -78,9 +78,9 @@
 <div class="maincontent-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
-        <div class="row" id="list-product">
+{{--            <div class="row" id="list-product">--}}
             @yield('content')
-        </div>
+{{--        </div>--}}
         <div class="row">
             @yield('page')
         </div>

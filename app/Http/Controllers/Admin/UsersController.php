@@ -29,6 +29,14 @@ class UsersController extends Controller
         return view('admin.users.list', $this->v);
     }
 
+    public function info(){
+        $user = \Illuminate\Support\Facades\Auth::user();
+        // dd($user);
+        $this->v['title'] = 'Thông tin người dùng';
+        $this->v['user'] = $user;
+        return view('admin.users.user_info', $this->v);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
