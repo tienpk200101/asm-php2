@@ -15,11 +15,16 @@ use App\Http\Controllers\MyController;
 |
 */
 
-Route::get('/', function (){
-    return view('frontend.layouts.main');
-});
+Route::get('/', 'Client\HomeController@index')->name('route_Fontend_Home');
 
-Route::post('postFile', [MyController::class, 'uploadFile'])->name('postFile');
+
+//Route::post('postFile', [MyController::class, 'uploadFile'])->name('postFile');
+
+Route::get('/login', 'Client\AccountController@login')->name('login');
+Route::post('/login', 'Client\AccountController@saveLogin');
+Route::get('/register', 'Client\AccountController@register');
+Route::post('/register/add', 'Client\AccountController@saveRegister');
+Route::get('/logout', 'Client\AccountController@logout');
 
 Route::get('/admin/login', 'Admin\LoginController@getLoginAdmin')->name('login');
 Route::post('/admin/login', 'Admin\LoginController@postLoginAdmin');
@@ -28,6 +33,16 @@ Route::get('admin/register', function (){
     return view('admin.auth.register');
 });
 
+//FRONTEND
+Route::controller('FrontEnd\FrontEndController')->group(function(){
+    Route::get('/', 'index')->name('Route_FrontEnd_Index');
+    Route::get('/shoppage', 'shopPage')->name('Route_FrontEnd_ShopPage');
+    Route::get('/product/{id}', 'detail')->name('Route_FrontEnd_Detail');
+});
+
+
+
+// BACKEND
 Route::middleware(['auth'])->group(function (){
     Route::prefix('/admin')->group(function (){
 
@@ -75,6 +90,27 @@ Route::middleware(['auth'])->group(function (){
                 Route::get('/', 'index')->name('Route_BackEnd_User_List'); // List User
 
                 Route::get('/detail/{id}', 'show')->name('Route_BackEnd_User_Detail'); // Detail User
+            });
+        });
+
+//        Banner
+        Route::prefix('/banners')->group(function (){
+            Route::controller('Admin\BannerController')->group(function(){
+                Route::get('/', 'index')->name('Route_BackEnd_Banner_List'); // get list banner
+                Route::get('/add', 'create')->name('Route_BackEnd_Banner_Add'); // get list banner
+                Route::post('/add', 'store')->name('Route_BackEnd_Banner_Post'); // Post Banner
+                Route::get('/detail/{id}', 'edit')->name('Route_BackEnd_Banner_Detail'); // Get Form Edit Banner
+                Route::post('/update/{id}', 'update')->name('Route_BackEnd_Banner_Update'); // Update Banner
+                Route::get('/delete/{id}', 'destroy')->name('Route_BackEnd_Banner_Destroy'); // delete Banner
+            });
+        });
+
+        // Staff
+        Route::prefix('staffs')->group(function(){
+            Route::controller('Admin\StaffController')->group(function(){
+                Route::get('/', 'index')->name('Route_BackEnd_Staff_List'); // get list staff
+                Route::get('add', 'create')->name('Route_BackEnd_Staff_Add'); //Get form add staff
+                Route::post('add', 'store')->name('Route_BackEnd_Staff_Post'); //Get form add staff
             });
         });
     });

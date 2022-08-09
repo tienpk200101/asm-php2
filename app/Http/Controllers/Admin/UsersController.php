@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Users;
 
@@ -24,7 +23,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = new Users();
-        $users = $users->loadListWithPage();
+        $users = $users->loadListWithPage(2);
         $this->v['users'] = $users;
         $this->v['title'] = 'Danh sách người dùng';
         return view('admin.users.list', $this->v);

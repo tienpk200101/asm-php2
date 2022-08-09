@@ -27,7 +27,7 @@ class ProductController extends Controller
     public function index()
     {
         $product = new Product();
-        $products = $product->loadListWithPage();
+        $products = $product->loadListWithPage(12);
         $pape = $products->currentPage();
 
 //        dd($products[0]);
@@ -67,9 +67,8 @@ class ProductController extends Controller
 
 
         $modelProduct = new Product();
-        if($request->hasFile('image')){
-            $files = $request->file('image')->store('public/profile');
-            $params['cols']['image'] = substr($files, strlen('public/'));
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $params['cols']['image'] = $this->uploadFile($request->file('image'));
         }
         $res = $modelProduct->create($params);
 
@@ -129,14 +128,12 @@ class ProductController extends Controller
         $objItem = $product->loadOne($id);
         $params['cols']['id'] = $id;
 
-        if($request->hasFile('image')){
-            Storage::delete('storage/'.$objItem->image);
-            $files = $request->file('image')->store('public/profile');
-            $params['cols']['image'] = substr($files, strlen('public/'));
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $params['cols']['image'] = $this->uploadFile($request->file('image'));
         }
 
-
         $res = $product->saveUpdate($params);
+
         if($res == null) {
             return redirect()->route($method_route, ['id' => $id]);
         } elseif($res == 1){
@@ -161,6 +158,7 @@ class ProductController extends Controller
 
         if(isset($product)) {
             $res = $product->delete();
+
             if($res == 1){
                 Session::flash('success', 'Xóa bản ghi thành công');
                 return redirect()->route($method_route);
@@ -172,8 +170,10 @@ class ProductController extends Controller
             Session::flash('error', 'Bản ghi không tồn tại');
             return redirect()->route($method_route);
         }
+    }
 
-
-
+    public function uploadFile($file){
+        $fileName = time().'_'.$file->getClientOriginalName();
+        return $file->storeAs('product', $fileName, 'public');
     }
 }

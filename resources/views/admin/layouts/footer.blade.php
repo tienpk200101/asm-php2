@@ -17,3 +17,4 @@
 <script src="/templates/admin/dist/js/demo.js"></script>
 
 <script src="/templates/admin/dist/js/pages/dashboard2.js"></script>
+@yield('footer')

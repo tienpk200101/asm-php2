@@ -43,9 +43,9 @@ class LoginController extends Controller
         if (Auth::attempt([
             'email' => $email,
             'password' => $password,
-            'role_id' => 1]))
+            'level' => 1]))
         {
-            $user = User::where('email', '=', $email)->first();
+            $user = User::where('email', $email)->first();
             Auth::login($user);
             return redirect('/admin/dashboard');
         } else {
