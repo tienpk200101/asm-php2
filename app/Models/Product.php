@@ -16,12 +16,12 @@ class Product extends Model
         'products.description_short', 'products.description', 'products.status',
         'products.created_at', 'products.updated_at', 'categories.name as cate_name'];
 
-    public function loadListWithPage(){
+    public function loadListWithPage($amount){
         $products = DB::table($this->table)
             ->leftJoin('categories', 'products.cate_id', '=', 'categories.id')
             ->where('products.status', '=', 0)
             ->select($this->fillable)
-            ->paginate(5);
+            ->paginate($amount);
         return $products;
     }
 

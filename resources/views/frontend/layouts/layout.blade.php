@@ -10,6 +10,7 @@
 <html lang="en">
 <head>
    @include('frontend.layouts.header')
+    @yield('css')
 </head>
 <body>
 
@@ -63,7 +64,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" id="mainmenu">
-                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="active"><a href="{{route('Route_FrontEnd_Index')}}">Trang chủ</a></li>
+                    <li class=""><a href="{{route('Route_FrontEnd_ShopPage')}}">Cửa hàng</a></li>
                 </ul>
             </div>
         </div>
@@ -83,29 +85,7 @@
             @yield('content')
         </div>
         <div class="row">
-            <div class="col-md-12">
-                <div class="product-pagination text-center">
-                    <nav>
-                        <ul class="pagination" id="list_page">
-                            <li>
-                                <a href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li>
-                                <a href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+            @yield('page')
         </div>
     </div>
 </div> <!-- End main content area -->

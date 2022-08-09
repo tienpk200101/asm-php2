@@ -2,6 +2,11 @@
 @section('title')
     {{$title}}
 @endsection
+
+@section('head')
+    <script src="/ckeditor/ckeditor.js"></script>
+@endsection
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -53,8 +58,8 @@
                             <p class="text text-danger">{{$message}}</p>
                             @enderror
                             <div class="form-group">
-                                <label>Mô tả</label>
-                                <textarea class="form-control" name="description"></textarea>
+                                <label>Nội dung</label>
+                                <textarea class="form-control" id="content" name="description"></textarea>
                             </div>
                             @error('description')
                             <p class="text text-danger">{{$message}}</p>
@@ -70,4 +75,10 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('footer')
+    <script>
+        CKEDITOR.replace('content');
+    </script>
 @endsection

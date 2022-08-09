@@ -10,7 +10,7 @@
 
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="/templates/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
+                <img src="{{asset('storage/'.$objUser->avatar)}}" class="img-circle elevation-2"
                      alt="User Image">
             </div>
             <div class="info">
@@ -44,8 +44,17 @@
                     </a>
                 </li>
                 <li class="nav-item menu-open">
+                    <a href="{{url('/admin/categories')}}" class="nav-link">
+                        <i class="nav-icon fas fa-cart-plus"></i>
+                        <p>
+                            Đơn hàng
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item menu-open">
                     <a href="{{url('/admin/product')}}" class="nav-link">
-                        <i class="nav-icon fas fa-product-alt"></i>
+                        <i class="nav-icon fas fa-bars"></i>
                         <p>
                             Sản phẩm
                             <i class="right fas fa-angle-left"></i>
@@ -54,7 +63,7 @@
                 </li>
                 <li class="nav-item menu-open">
                     <a href="{{url('/admin/categories')}}" class="nav-link">
-                        <i class="nav-icon fas fa-product-alt"></i>
+                        <i class="nav-icon fas fa-bars"></i>
                         <p>
                             Danh mục
                             <i class="right fas fa-angle-left"></i>
@@ -62,8 +71,8 @@
                     </a>
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="{{url('/admin/categories')}}" class="nav-link">
-                        <i class="nav-icon fas fa-product-alt"></i>
+                    <a href="{{url('/admin/banners')}}" class="nav-link">
+                        <i class="nav-icon fas fa-image"></i>
                         <p>
                             Banner
                             <i class="right fas fa-angle-left"></i>
@@ -71,31 +80,27 @@
                     </a>
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="{{url('/admin/users')}}" class="nav-link">
-                        <i class="nav-icon fas fa-product-alt"></i>
+                    <a class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Khách hàng
+                            Người dùng
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                </li>
-                <li class="nav-item menu-open">
-                    <a href="{{url('/admin/categories')}}" class="nav-link">
-                        <i class="nav-icon fas fa-product-alt"></i>
-                        <p>
-                            Đơn hàng
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item menu-open">
-                    <a href="{{url('/admin/categories')}}" class="nav-link">
-                        <i class="nav-icon fas fa-product-alt"></i>
-                        <p>
-                            Nhân viên
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{url('/admin/users')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Khách hàng</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('/admin/staffs')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nhân viên</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>
@@ -103,3 +108,4 @@
     </div>
 
 </aside>
+
