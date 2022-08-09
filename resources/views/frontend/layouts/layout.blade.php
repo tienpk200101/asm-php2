@@ -1,3 +1,6 @@
+@php
+    $objUser = \Illuminate\Support\Facades\Auth::user();
+@endphp
 <!DOCTYPE html>
 <!--
 	ustora by freshdesignweb.com
@@ -16,11 +19,12 @@
             <div class="col-md-8">
                 <div class="user-menu">
                     <ul>
-                        <li><a href="#"><i class="fa fa-user"></i> Tài khoản của tôi</a></li>
-                        <li><a href="#"><i class="fa fa-heart"></i> Danh sách yêu thích</a></li>
-                        <li><a href="gio-hang.html"><i class="fa fa-user"></i> Giỏ hàng</a></li>
-                        <li><a href="checkout.html"><i class="fa fa-user"></i> Kiểm tra</a></li>
-                        <li><a href="dang-nhap.html"><i class="fa fa-user"></i> Đăng nhập</a></li>
+                        @if ($objUser)
+                            <li>{{ $objUser->name }}</li>
+                            <li><a href="/logout"><i class="fa fa-user"></i> Đăng Xuất</a></li>
+                        @else
+                            <li><a href="/login"><i class="fa fa-user"></i> Đăng nhập</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -39,7 +43,7 @@
 
             <div class="col-sm-6">
                 <div class="shopping-item">
-                    <a href="gio-hang.html">Giỏ hàng - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                    <a href="gio-hang.html">Giỏ hàng<i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                 </div>
             </div>
         </div>
@@ -74,10 +78,9 @@
 </div> <!-- End slider area -->
 
 <div class="maincontent-area">
-    <div class="zigzag-bottom"></div>
     <div class="container">
-        <div class="row" id="list-product">
-
+        <div class="" style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; grid-gap: 20px">
+            @yield('content')
         </div>
         <div class="row">
             <div class="col-md-12">

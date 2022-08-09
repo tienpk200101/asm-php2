@@ -47,7 +47,7 @@
                     @enderror
                     <div class="form-group">
                         <label>Mô tả</label>
-                        <textarea class="form-control" name="description" placeholder="{{$product->description}}"></textarea>
+                        <textarea class="form-control" name="description" placeholder="">{{$product->description}}</textarea>
                     </div>
                     @error('description')
                     <p class="text text-danger">{{$message}}</p>

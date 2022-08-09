@@ -15,11 +15,15 @@ use App\Http\Controllers\MyController;
 |
 */
 
-Route::get('/', function (){
-    return view('frontend.layouts.main');
-});
+Route::get('/', 'Client\HomeController@index')->name('route_Fontend_Home');
 
 Route::post('postFile', [MyController::class, 'uploadFile'])->name('postFile');
+
+Route::get('/login', 'Client\AccountController@login')->name('login');
+Route::post('/login', 'Client\AccountController@saveLogin');
+Route::get('/register', 'Client\AccountController@register');
+Route::post('/register/add', 'Client\AccountController@saveRegister');
+Route::get('/logout', 'Client\AccountController@logout');
 
 Route::get('/admin/login', 'Admin\LoginController@getLoginAdmin')->name('login');
 Route::post('/admin/login', 'Admin\LoginController@postLoginAdmin');

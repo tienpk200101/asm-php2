@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class Users extends Model
 {
@@ -27,5 +28,19 @@ class Users extends Model
             ->first();
 
         return $user;
+    }
+
+    public function create($params){
+        $data = array_merge($params['cols'],[
+            'name' => $params['cols']['name'],
+            'email' => $params['cols']['email'],
+            'password' => Hash::make($params['cols']['password']),
+            'role_id' => 2,
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+
+        $res = DB::table($this->table)->insertGetId($data);
+
+        return $res;
     }
 }
