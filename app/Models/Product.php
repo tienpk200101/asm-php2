@@ -16,24 +16,27 @@ class Product extends Model
         'products.description_short', 'products.description', 'products.status',
         'products.created_at', 'products.updated_at', 'categories.name as cate_name'];
 
-    public function loadListWithPage($amount){
-        $products = DB::table($this->table)
-            ->leftJoin('categories', 'products.cate_id', '=', 'categories.id')
-            ->where('products.status', '=', 0)
-            ->select($this->fillable)
-            ->paginate($amount);
-        return $products;
+    public function loadListWithPage($search, $amount){
+        if($search == '') {
+            $products = DB::table($this->table)
+                ->leftJoin('categories', 'products.cate_id', '=', 'categories.id')
+                ->where('products.status', '=', 0)
+                ->select($this->fillable)
+                ->paginate($amount);
+
+            return $products;
+        } else {
+            $products = DB::table($this->table)
+                ->leftJoin('categories', 'products.cate_id', '=', 'categories.id')
+                ->where('products.name', 'LIKE', '%'.$search.'%')
+                ->where('products.status', '=', 0)
+                ->select($this->fillable)
+                ->paginate($amount);
+
+            return $products;
+        }
     }
 
-    // public function loadListWithSearch($search){
-        
-    //     if($search == '') {
-    //         $products = DB::table($this->table)
-    //             ->leftJoin('categories', 'products.cate_id', '=', 'categories.id')
-    //             ->where('name', 'LIKE', '%'.$search.'%');
-    //             ->select($this->fillable)
-    //     }
-    // }
 
     public function create($params){
         $data = array_merge($params['cols'],[

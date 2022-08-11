@@ -1,9 +1,7 @@
+@php
+    $objUser = \Illuminate\Support\Facades\Auth::user();
+@endphp
 <!DOCTYPE html>
-<!--
-	ustora by freshdesignweb.com
-	Twitter: https://twitter.com/freshdesignweb
-	URL: https://www.freshdesignweb.com/ustora/
--->
 <html lang="en">
 <head>
    @include('frontend.layouts.header')
@@ -17,11 +15,20 @@
             <div class="col-md-8">
                 <div class="user-menu">
                     <ul>
-                        <li><a href="#"><i class="fa fa-user"></i> Tài khoản của tôi</a></li>
-                        <li><a href="#"><i class="fa fa-heart"></i> Danh sách yêu thích</a></li>
-                        <li><a href="gio-hang.html"><i class="fa fa-user"></i> Giỏ hàng</a></li>
-                        <li><a href="checkout.html"><i class="fa fa-user"></i> Kiểm tra</a></li>
-                        <li><a href="dang-nhap.html"><i class="fa fa-user"></i> Đăng nhập</a></li>
+{{--                        <li><a href="#"><i class="fa fa-user"></i> Tài khoản của tôi</a></li>--}}
+{{--                        <li><a href="#"><i class="fa fa-heart"></i> Danh sách yêu thích</a></li>--}}
+{{--                        <li><a href="gio-hang.html"><i class="fa fa-user"></i> Giỏ hàng</a></li>--}}
+{{--                        <li><a href="checkout.html"><i class="fa fa-user"></i> Kiểm tra</a></li>--}}
+{{--                        <li><a href="{{route('route_Frontend_Login')}}"><i class="fa fa-user"></i> Đăng nhập</a></li>--}}
+                        <ul>
+                            @if ($objUser)
+                                <li>{{ $objUser->name }}</li>
+                                <li><a href="/logout"><i class="fa fa-user"></i> Đăng Xuất</a></li>
+                            @else
+                                <li><a href="/login"><i class="fa fa-user"></i> Đăng nhập</a></li>
+                            @endif
+                        </ul>
+
                     </ul>
                 </div>
             </div>

@@ -24,16 +24,29 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $search = null)
     {
+        $search = $request->input('search');
+
         $product = new Product();
-        $products = $product->loadListWithPage(8);
-        $pape = $products->currentPage();
+        $products = $product->loadListWithPage($search,8);
 
-//        dd($products[0]);
+//        $pape = $products->currentPage();
+
         $this->v['title'] = 'Sản phẩm';
+        $this->v['products'] = $products;
 
-        return view('admin.products.list', compact('products'), $this->v);
+        return view('admin.products.list', $this->v);
+    }
+
+    public function search(Request $request, $search = null){
+        $search = $request->input('search');
+
+        $product = new Product();
+        $products = $product->loadListWithSearch($search);
+        $this->v['products'] = $products;
+//        dd($products);
+        return view('index', $this->v);
     }
 
     /**

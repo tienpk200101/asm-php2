@@ -20,19 +20,30 @@ class UsersController extends Controller
         $this->v = [];
     }
 
-    public function index()
+    public function index(Request $request, $search = null)
     {
         $users = new Users();
-        $users = $users->loadListWithPage(2);
+        $search = $request->input('search');
+
+        $users = $users->loadListWithPage(2, 8, $search);
         $this->v['users'] = $users;
-        $this->v['title'] = 'Danh sách người dùng';
+        $this->v['title'] = 'Danh sách khách hàng';
         return view('admin.users.list', $this->v);
+    }
+
+    public function changeStatus(Request $request){
+        $user = User::find($request->user_id);
+        dd($user);
+        $user->status = $request->status;
+        $user->save();
+
+        return response()->json(['success'=>'Status change successfully.']);
     }
 
     public function info(){
         $user = \Illuminate\Support\Facades\Auth::user();
         // dd($user);
-        $this->v['title'] = 'Thông tin người dùng';
+        $this->v['title'] = 'Thông tin khách hàng';
         $this->v['user'] = $user;
         return view('admin.users.user_info', $this->v);
     }

@@ -26,7 +26,19 @@
                 @include('admin.alert')
                 <div class="card card-info mt-3">
                     <div class="card-header">
-                        <h3 class="card-title">{{$title}}</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 class="card-title">{{$title}}</h3>
+                            </div>
+                            <div class="col-md-6">
+                                <form action="{{route('admin_product')}}" method="get">
+                                    <div class="form-group d-flex flex-md-row">
+                                        <input type="text" name="search" placeholder="Tìm kiếm" class="form-control"/>
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <div class="table-list mt-4">
                         <a class="btn btn-outline-success" id="add-product" href="{{route('add_product')}}">Thêm sản phẩm</a>
@@ -90,3 +102,4 @@
         })
     </script>
 @endsection
+

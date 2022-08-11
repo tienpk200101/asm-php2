@@ -13,12 +13,23 @@ class Users extends Model
     protected $table = 'users';
     protected $fillable = ['id', 'name', 'email', 'avatar', 'role_id', 'created_at', 'updated_at', 'status'];
 
-    public function loadListWithPage($level){
-        $users = DB::table($this->table)
-            ->where('level', $level)
-            ->select($this->fillable)
-            ->paginate(5);
-        return $users;
+    public function loadListWithPage($level, $amount, $search){
+        if($search == '') {
+            $users = DB::table($this->table)
+                ->where('level', $level)
+                ->select($this->fillable)
+                ->paginate($amount);
+            return $users;
+        } else {
+            $users = DB::table($this->table)
+                ->where('level', $level)
+                ->where('name', 'LIKE', '%'.$search.'%')
+                ->orWhere('email', 'LIKE', '%'.$search.'%')
+                ->select($this->fillable)
+                ->paginate($amount);
+            return $users;
+        }
+
     }
 
 
@@ -42,5 +53,19 @@ class Users extends Model
             'created_at' => date('Y-m-d H:i:s')
         ]);
         $res = DB::table($this->table)->insertGetId($data);
+    }
+
+    public function create($params){
+        $data = array_merge($params['cols'],[
+            'name' => $params['cols']['name'],
+            'email' => $params['cols']['email'],
+            'password' => Hash::make($params['cols']['password']),
+            'role_id' => 2,
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+
+        $res = DB::table($this->table)->insertGetId($data);
+
+        return $res;
     }
 }
