@@ -42,14 +42,14 @@ Route::middleware(['auth'])->group(function (){
         Route::get('info', 'Admin\UsersController@info')->name("Route_BackEnd_AdminInfo");
 
 //      Product
-        Route::prefix('product')->group(function(){
+        Route::prefix('/product')->group(function(){
 //            Controller Product
             Route::controller('Admin\ProductController')->group(function (){
                 Route::get('/{search?}', 'index')->name('admin_product'); // get list product
 
-                Route::get('/add', 'create')->name('add_product'); // get add form product
+                Route::get('/add', 'create')->name('route_BackEnd_Product_Add'); // get add form product
 
-                Route::post('/add', 'store')->name('handle_product'); // add product
+                Route::post('/add', 'store')->name('route_BackEnd_Product_Post'); // add product
 
                 Route::get('/detail/{id}', 'edit')->name('route_BackEnd_Product_Detail'); // get detail product
 

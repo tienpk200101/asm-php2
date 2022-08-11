@@ -20,7 +20,7 @@ class StaffController extends Controller
     public function index(){
         $staff = new Users();
         $this->v['title'] = 'Danh sách nhân viên';
-        $this->v['staffs'] = $staff->loadListWithPage(1);
+        $this->v['staffs'] = $staff->loadListWithPage(1, 1, '');
         return view('admin.staffs.list', $this->v);
     }
 

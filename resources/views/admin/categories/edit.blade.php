@@ -27,7 +27,7 @@
                             <div class="form-group">
                                 <a class="btn btn-primary" href="{{route('route_BackEnd_Category_List')}}">Quay lại</a>
                                 <button class="btn btn-warning" type="reset" id="close">Reset</button>
-                                <button class="btn btn-success" type="submit">Sửa</button>
+                                <button class="btn btn-success" type="submit">Cập nhật</button>
                             </div>
                             @csrf
                         </form>

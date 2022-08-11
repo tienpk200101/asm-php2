@@ -1,121 +1,85 @@
 @extends('frontend.layouts.layout')
-@section('css')
-    <style>
-        #product_detail, #form-reviews{
-            display: none;
-        }
 
-        #click_detail{
-            width: 100px;
-        }
-    </style>
-@endsection
 @section('content')
-    <div class="col-md-8">
-        <div class="product-content-right">
-            <div class="product-breadcroumb">
-                <a href="">Trang chủ</a>
-                <a href="">Điện thoại</a>
-                <a href="">{{$product->name}}</a>
+
+<div class="app__container--detail">
+    @include('frontend.layouts.navside')
+    <div class="product__detail">
+        <img src="https://cdn1.viettelstore.vn/images/Product/ProductImage/medium/1a536.jpg" class="product__detail--img" alt="">
+    </div>
+    <div class="product__info">
+        <h2 class="product__info--title">{{$product->name}}
+            <a href=""></a>
+        </h2>
+        <div class="product__info--rate">
+            <p class="product__info--rate--number">5.0</p>
+            <div class="product__info--rate--star">
+                <i class="home-product-item__star--orange fas fa-star"></i>
+                <i class="home-product-item__star--orange fas fa-star"></i>
+                <i class="home-product-item__star--orange fas fa-star"></i>
+                <i class="home-product-item__star--orange fas fa-star"></i>
+                <i class="home-product-item__star--orange fas fa-star"></i>
             </div>
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="product-images">
-                        <div class="product-main-img">
-                            <img src="{{asset('storage/'.$product->image)}}" alt="">
-                        </div>
-
-                        <div class="product-gallery">
-                            <img src="img/product-thumb-1.jpg" alt="">
-                            <img src="img/product-thumb-2.jpg" alt="">
-                            <img src="img/product-thumb-3.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="product-inner">
-                        <h2 class="product-name">{{$product->name}}</h2>
-                        <div class="product-inner-price">
-                            <ins>{{$product->price}}đ</ins>
-                        </div>
-
-                        <form action="" class="cart">
-                            <div class="quantity">
-                                <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-                            </div>
-                            <button class="add_to_cart_button" type="submit">Add to cart</button>
-                        </form>
-
-{{--                        <div class="product-inner-category">--}}
-{{--                            <p>Category: <a href="">Summer</a>. Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>. </p>--}}
-{{--                        </div>--}}
-
-                        <div role="tabpanel">
-                            <ul class="product-tab" role="tablist">
-                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
-                                <li role="presentation"><a href="#profile" id="reviews" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
-                            </ul>
-                            <div id="form-reviews">
-
-                                <div id="profile">
-                                    <h2>Reviews</h2>
-                                    <div class="submit-review">
-                                        <p><label for="name">Name</label> <input name="name" type="text"></p>
-                                        <p><label for="email">Email</label> <input name="email" type="email"></p>
-                                        <div class="rating-chooser">
-                                            <p>Your rating</p>
-
-                                            <div class="rating-wrap-post">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <p><label for="review">Your review</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
-                                        <p><input type="submit" value="Submit"></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+            <p class="product__info--text product__text"><span class="text_under">5234</span> Đánh giá
+            </p>
+            <p class="product__info--sold product__text"><span class="text--bold">3421</span> Đã bán</p>
+        </div>
+        <div class="grid-664">
+            <div class="product__price">
+                <span class="product__price--number">₫{{$product->price}}</span>
             </div>
-            <div class="row">
-                <div>
-                    <h2>Chi tiết sản phẩm</h2>
-                    <div id="product_detail">
-                        {!! $product->description !!}
-                    </div>
+            <div class="product__transport">
+                <p class="product__transport--text">Vận Chuyển</p>
+                <ul class="product__transport--list">
+                    <li class="product__transport--item">
+                        <div class="product__transport--item--choice">
+                            <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/1cdd37339544d858f4d0ade5723cd477.png" width="25" height="15" class="_2geN66">
+                            <span class="product__transport--item--choice--text">Miễn phí vận
+                                chuyển</span>
+                        </div>
+                        <div class="product__transport--item--choice">
+                            <i class="fas fa-truck-moving product__transport--item--choice--icon"></i>
+                            <span class="product__transport--item--choice--address">
+                                Vận chuyển tới
+                            </span>
+                            <span class="product__transport--item--choice--text">
+                                Huyện Thạch Thất
+                                <i class="fas fa-chevron-down product__transport--item--icon"></i>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="product__transport--item">
+                        <div class="product__transport--item--take">
+                            <span class="product__transport--item--choice--address product__transport--item--take--go">
+                                Phí vận chuyển
+                            </span>
+                            <span class="product__transport--item--choice--text product__transport--item--text">
+                                đ0
+                                <i class="fas fa-chevron-down product__transport--item--icon"></i>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="product__quanlity product__transport">
+                <span class="product__quanlity--text">Số lượng</span>
+                <div class="product__quanlity--table">
+                    <span>-</span>
+                    <span>1</span>
+                    <span>+</span>
                 </div>
-                <div class="text-center">
-                    <button class="btn btn-info" id="click_detail">Xem thêm</button>
-                </div>
+                <span class="product__quanlity--text">455 sản phẩm có sẵn</span>
+            </div>
+            <div class="product__cart product__transport">
+                <button class="product__cart--box product__cart--add">
+                    <i class="fas fa-shopping-cart product__cart--add--icon"></i>
+                    <p class="product__cart--add--text">Thêm vào giỏ hàng</p>
+                </button>
+                <button class="product__cart--box product__cart--soldnow">
+                    <span class="product__cart--soldnow">Mua ngay</span>
+                </button>
             </div>
         </div>
     </div>
-@endsection
-
-@section('script')
-    <script>
-        $(document).ready(function () {
-            $('#click_detail').click(function (){
-                $('#product_detail').slideDown(1000);
-                $('#click_detail').text('Thu gọn');
-            });
-
-            $('#click_detail').dblclick(function (){
-                $('#product_detail').slideUp(1000);
-                $('#click_detail').text('Xem thêm');
-            });
-
-            $('#reviews').click(function () {
-                $('#form-reviews').slideToggle(500);
-            })
-        });
-    </script>
+</div>
 @endsection

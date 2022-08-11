@@ -39,16 +39,6 @@ class ProductController extends Controller
         return view('admin.products.list', $this->v);
     }
 
-    public function search(Request $request, $search = null){
-        $search = $request->input('search');
-
-        $product = new Product();
-        $products = $product->loadListWithSearch($search);
-        $this->v['products'] = $products;
-//        dd($products);
-        return view('index', $this->v);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -57,8 +47,8 @@ class ProductController extends Controller
     public function create()
     {
         $this->v['title'] = 'Thêm sản phẩm';
-        $categories = new Category();
-        $this->v['categories'] = $categories->getData();
+        // $categories = new Category();
+        // $this->v['categories'] = $categories->getData();
 
         return view('admin.products.add', $this->v);
     }
@@ -188,5 +178,15 @@ class ProductController extends Controller
     public function uploadFile($file){
         $fileName = time().'_'.$file->getClientOriginalName();
         return $file->storeAs('product', $fileName, 'public');
+    }
+
+    // Search find product by name
+    public function search(Request $request, $search = null){
+        $search = $request->input('search');
+        $product = new Product();
+        $products = $product->loadListWithSearch($search);
+        $this->v['products'] = $products;
+        
+        return view('index', $this->v);
     }
 }

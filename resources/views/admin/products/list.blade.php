@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="table-list mt-4">
-                        <a class="btn btn-outline-success" id="add-product" href="{{route('add_product')}}">Thêm sản phẩm</a>
+                        <a class="btn btn-outline-success" id="add-product" href="{{url('/admin/product/add')}}">Thêm sản phẩm</a>
                         <table class="container-fluid table table-bordered my-4">
                             <thead>
                             <tr>

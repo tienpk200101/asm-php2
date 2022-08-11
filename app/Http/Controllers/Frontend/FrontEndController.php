@@ -18,6 +18,9 @@ class FrontEndController extends Controller
 
     public function index(){
         $banners = Banner::all();
+        $prorduct = new Product();
+        $prorducts = $prorduct->loadListWithPage('',12);
+        $this->v['products'] = $prorducts;
         $this->v['banners'] = $banners;
         $this->v['title'] = 'Fintech';
         return view('frontend.layouts.main', $this->v);

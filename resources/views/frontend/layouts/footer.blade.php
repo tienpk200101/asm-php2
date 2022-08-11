@@ -1,4 +1,4 @@
-
+{{-- 
 <!-- Latest jQuery form server -->
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
@@ -123,4 +123,4 @@
     // }
     //
     // loadData(1,3)
-</script>
+</script> --}}
