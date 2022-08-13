@@ -47,8 +47,8 @@ class ProductController extends Controller
     public function create()
     {
         $this->v['title'] = 'Thêm sản phẩm';
-        // $categories = new Category();
-        // $this->v['categories'] = $categories->getData();
+         $categories = new Category();
+         $this->v['categories'] = $categories->getData();
 
         return view('admin.products.add', $this->v);
     }
@@ -156,7 +156,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $method_route = 'admin_product';
+        $method_route = 'route_BackEnd_Product_List';
         $product = Product::find($id);
 
         if(isset($product)) {
@@ -186,7 +186,7 @@ class ProductController extends Controller
         $product = new Product();
         $products = $product->loadListWithSearch($search);
         $this->v['products'] = $products;
-        
+
         return view('index', $this->v);
     }
 }

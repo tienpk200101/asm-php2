@@ -1,4 +1,20 @@
 @extends('frontend.layouts.layout')
+
+@section('banner')
+
+    <div class="banner">
+        @foreach($banners as $banner)
+            <div class="mySlides fade">
+                <a href="{{$banner->url}}">
+                    <img src="{{asset('storage/'.$banner->image)}}" style="width:100%; max-height: 400px;">
+                </a>
+            </div>
+        @endforeach
+    </div>
+
+@endsection
+
+
 @section('content')
 
 @include('frontend.layouts.navside')
@@ -52,7 +68,7 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <span class="home-product-item__sold">1008 đã bán</span>
-            </div> 
+            </div>
             <div class="home-product-item__origin">
                 {{-- <span class="home-product-item__origin-name">Trung Quốc</span> --}}
             </div>
@@ -68,15 +84,12 @@
     </div>
     @endforeach
 </div>
-
+{{--{!! $products->links() !!}--}}
 <ul class="pagination home-product__pagination">
     <li class="pagination-item">
         <a href="index_2.html" class="pagination-item__link">
             <i class="pagination-item__icon fas fa-angle-left"></i>
         </a>
-    </li>
-    <li class="pagination-item pagination-item--active">
-        <a href="" class="pagination-item__link">1</a>
     </li>
     <li class="pagination-item">
         <a href="" class="pagination-item__link">2</a>

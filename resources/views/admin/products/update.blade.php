@@ -58,7 +58,7 @@
                     <p class="text text-danger">{{$message}}</p>
                     @enderror
                     <div class="form-group">
-                        <a href="{{route('admin_product')}}" class="btn btn-primary">Quay lại</a>
+                        <a href="{{route('route_BackEnd_Product_List')}}" class="btn btn-primary">Quay lại</a>
                         <button type="reset" class="btn btn-warning">Reset</button>
                         <button type="submit" class="btn btn-success">Cập nhật</button>
                     </div>

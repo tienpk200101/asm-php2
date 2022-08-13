@@ -17,7 +17,7 @@
                     </div>
 {{--                    @include('admin.alert')--}}
                     <div class="table-list mt-4 d-flex justify-content-center">
-                        <form method="post" action="{{route('handle_product')}}" enctype="multipart/form-data" class="col-8">
+                        <form method="post" action="{{route('route_BackEnd_Product_Post')}}" enctype="multipart/form-data" class="col-8">
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
                                 <input type="text" name="name" class="form-control" value="{{old('name')}}">

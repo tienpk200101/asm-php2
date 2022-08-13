@@ -31,7 +31,7 @@
                                 <h3 class="card-title">{{$title}}</h3>
                             </div>
                             <div class="col-md-6">
-                                <form action="{{route('admin_product')}}" method="get">
+                                <form action="{{route('route_BackEnd_Product_List')}}" method="get">
                                     <div class="form-group d-flex flex-md-row">
                                         <input type="text" name="search" placeholder="Tìm kiếm" class="form-control"/>
                                         <button type="submit" class="btn btn-primary">Search</button>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="table-list mt-4">
-                        <a class="btn btn-outline-success" id="add-product" href="{{url('/admin/product/add')}}">Thêm sản phẩm</a>
+                        <a class="btn btn-outline-success" id="add-product" href="{{route('route_BackEnd_Product_Add')}}">Thêm sản phẩm</a>
                         <table class="container-fluid table table-bordered my-4">
                             <thead>
                             <tr>

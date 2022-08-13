@@ -20,7 +20,7 @@ class StaffController extends Controller
     public function index(){
         $staff = new Users();
         $this->v['title'] = 'Danh sách nhân viên';
-        $this->v['staffs'] = $staff->loadListWithPage(1, 1, '');
+        $this->v['staffs'] = $staff->loadListWithPage(1, 8, '');
         return view('admin.staffs.list', $this->v);
     }
 
@@ -34,18 +34,18 @@ class StaffController extends Controller
 
         $params = [];
         $params['cols']= $request->post();
-        
+
         unset($params['cols']['_token'],$params['cols']['confirm-password']);
-        
+
         $params['cols']['password'] = Hash::make($request->input('password'));
 
-    
+
         $staff = new Users();
 
         if($request->hasFile('avatar') && $request->file('avatar')->isValid()){
             $params['cols']['avatar'] = $this->uploadFile($request->file('avatar'));
         }
-        
+
         $res = $staff->saveStaff($params);
         if($res == null) {
             return redirect()->route($method_route);

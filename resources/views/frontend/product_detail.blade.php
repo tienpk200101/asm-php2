@@ -5,7 +5,7 @@
 <div class="app__container--detail">
     @include('frontend.layouts.navside')
     <div class="product__detail">
-        <img src="https://cdn1.viettelstore.vn/images/Product/ProductImage/medium/1a536.jpg" class="product__detail--img" alt="">
+        <img src="{{asset('storage/'.$product->image)}}" class="product__detail--img" alt="">
     </div>
     <div class="product__info">
         <h2 class="product__info--title">{{$product->name}}
@@ -79,7 +79,25 @@
                     <span class="product__cart--soldnow">Mua ngay</span>
                 </button>
             </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="product-detail" class="btn btn-info">Xem thêm</button>
+                <div id="content-description" style="display: none;">
+                    {!! $product->description !!}
+                    <button id="close" class="btn btn-info">Thu gọn</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+    <script>
+        $('#product-detail').click(function () {
+            $('#content-description').fadeIn();
+        })
+
+        $('#close').click(function () {
+            $('#content-description').fadeOut();
+        })
+    </script>
 @endsection

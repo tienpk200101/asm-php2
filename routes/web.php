@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function (){
         Route::prefix('/product')->group(function(){
 //            Controller Product
             Route::controller('Admin\ProductController')->group(function (){
-                Route::get('/{search?}', 'index')->name('admin_product'); // get list product
+                Route::get('/list/{search?}', 'index')->name('route_BackEnd_Product_List'); // get list product
 
                 Route::get('/add', 'create')->name('route_BackEnd_Product_Add'); // get add form product
 

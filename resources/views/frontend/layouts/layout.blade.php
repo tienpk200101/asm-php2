@@ -62,7 +62,7 @@
                     <!-- Header Logo -->
                     <div class="header__logo hide-on-tablet">
                         <a href="/" class="header__logo-link">
-                            Namtv 
+                            Namtv
                         </a>
                     </div>
 
@@ -198,6 +198,7 @@
         <div class="app__container">
             <div class="grid wide">
                 <div class="row sm-gutter app__content">
+                    @yield('banner')
                     @yield('content')
                 </div>
             </div>
@@ -315,3 +316,4 @@
 </body>
 
 </html>
+@yield('script')

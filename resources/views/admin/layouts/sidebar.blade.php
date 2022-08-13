@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="{{url('/admin/product')}}" class="nav-link">
+                    <a href="{{route('route_BackEnd_Product_List')}}" class="nav-link">
                         <i class="nav-icon fas fa-bars"></i>
                         <p>
                             Sản phẩm
